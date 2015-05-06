@@ -62,7 +62,7 @@ function postfix(parsed) {
     add('reject', reject[1]);
   }
 
-  var from = !log.match(/NOQUEUE/) && log.match(/from=<([a-zA-Z0-9\@\.]+)>/);
+  var from = !log.match(/NOQUEUE/) && log.match(/from=<([a-zA-Z0-9-_\@\.]+)>/);
   if (from) {
     add('from', from[1]);
   }
@@ -85,8 +85,10 @@ function dovecot(parsed) {
 function add(dbKey, value) {
   value = value.toLowerCase();
   DB[dbKey] = DB[dbKey] || {};
-  DB[dbKey][value] = DB[dbKey][value] || 0;
-  ++DB[dbKey][value];
+  DB[dbKey][value] = DB[dbKey][value] || {};
+  DB[dbKey][value].count = DB[dbKey][value].count || 0;
+
+  ++DB[dbKey][value].count;
 }
 
 function done() {

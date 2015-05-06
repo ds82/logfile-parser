@@ -65,6 +65,11 @@ function postfix(parsed) {
   if (from) {
     add('from', from[1]);
   }
+
+  var connects = log.match(/^connect from ([a-zA-Z-_\.0-9]+)\[([0-9\.]+)\]/);
+  if (connects) {
+    add('connect', connects[2]);
+  }
 }
 
 function add(dbKey, value) {

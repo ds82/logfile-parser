@@ -1,0 +1,27 @@
+{
+  "name": "logfile-parser",
+  "version": "0.0.1",
+  "description": "a logfile-parser in written in javascript",
+  "main": "index.js",
+  "dependencies": {
+    "byline": "^4.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ds82/logfile-parser.git"
+  },
+  "keywords": [
+    "logfile",
+    "parser"
+  ],
+  "author": "Dennis Sänger <npm15.logfile-parser@mail.ds82.de>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ds82/logfile-parser/issues"
+  },
+  "homepage": "https://github.com/ds82/logfile-parser"
+}

@@ -9,7 +9,8 @@ var not_parsable = 0;
 stream.on('data', parse).on('end', done);
 
 var PLUGIN = {
-  postfix: postfix
+  postfix: postfix,
+  dovecot: dovecot
 };
 
 var MATCH = {
@@ -69,6 +70,15 @@ function postfix(parsed) {
   var connects = log.match(/^connect from ([a-zA-Z-_\.0-9]+)\[([0-9\.]+)\]/);
   if (connects) {
     add('connect', connects[2]);
+  }
+}
+
+function dovecot(parsed) {
+  var log = parsed[MATCH.log];
+
+  var login = log.match(/^imap-login:.*user=<([a-zA-Z0-9\.@-_]+)>/);
+  if (login) {
+    add('imap-login', login[1]);
   }
 }
 

@@ -85,7 +85,8 @@ function dovecot(parsed) {
 function add(dbKey, value) {
   value = value.toLowerCase();
   DB[dbKey] = DB[dbKey] || {};
-  DB[dbKey][value] = DB[dbKey][value] || 0;
+  DB[dbKey][value] = DB[dbKey][value] || {};
+
   ++DB[dbKey][value];
 }
 

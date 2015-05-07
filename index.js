@@ -10,7 +10,8 @@ stream.on('data', parse).on('end', done);
 
 var PLUGIN = {
   postfix: postfix,
-  dovecot: dovecot
+  dovecot: dovecot,
+  postgrey: postgrey
 };
 
 var MATCH = {
@@ -79,6 +80,15 @@ function dovecot(parsed) {
   var login = log.match(/^imap-login:.*user=<([a-zA-Z0-9\.@-_]+)>/);
   if (login) {
     add('imap-login', login[1]);
+  }
+}
+
+function postgrey(parsed) {
+  var log = parsed[MATCH.log];
+
+  var greylisted = log.match(/action=greylist/) && log.match(/sender=([0-9a-zA-Z-_\.@]+)/);
+  if (greylisted) {
+    add('greylisted', greylisted[1]);
   }
 }
 
